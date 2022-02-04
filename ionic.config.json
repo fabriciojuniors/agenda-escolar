@@ -1,0 +1,7 @@
+{
+  "name": "agenda-escolar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
