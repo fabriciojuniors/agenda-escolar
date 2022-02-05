@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'io.agenda-escolar',
   appName: 'agenda-escolar',
   webDir: 'www',
   bundledWebRuntime: false

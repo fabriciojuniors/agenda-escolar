@@ -117,3 +117,14 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-footer {
+  &.footer-md::before {
+      background-image: none;
+  }
+}
+ion-footer {
+  &.footer-ios::before {
+      background-image: none;
+  }
+}
