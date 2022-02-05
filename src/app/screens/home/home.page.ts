@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { ModalController } from '@ionic/angular';
 import * as moment from 'moment';
+import { NewTaskPage } from '../new-task/new-task.page';
 
 @Component({
   selector: 'app-home',
@@ -34,13 +37,13 @@ export class HomePage implements OnInit {
   ];
   year: number = 0;
 
-  compromisso = {
-    id: 1,
-    data: moment().toDate().toLocaleDateString(),
-    nome: 'Compromisso de teste',
-    descricao: 'Este é o primeiro compromisso de teste'
-  };
-  constructor() {
+  compromissos = [];
+  usuario = '';
+  filtro = '';
+  constructor(
+    private modalCtrl: ModalController,
+    private firestore: AngularFirestore
+  ) {
     let now = moment().toDate();
     let counter = 1;
     this.year = now.getFullYear();
@@ -59,9 +62,47 @@ export class HomePage implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.firestore
+      .collection('compromissos', (ref) =>
+        ref.where('usuario', '==', this.usuario)
+      )
+      .snapshotChanges()
+      .subscribe((data) => {
+        this.compromissos = [];
+        data.map((item) => {
+          this.compromissos.push(item.payload.doc.data());
+        });
+      });
+  }
 
   pesquisar() {
     console.log('Pesquisando compromisso...');
+    this.firestore
+      .collection('compromissos', (ref) =>
+        this.filtro == ''
+          ? ref.where('usuario', '==', this.usuario)
+          : ref
+              .where('usuario', '==', this.usuario)
+              .where('nome', '==', this.filtro)
+              .orderBy("data")
+      )
+      .snapshotChanges()
+      .subscribe((data) => {
+        this.compromissos = [];
+        data.map((item) => {
+          this.compromissos.push(item.payload.doc.data());
+        });
+      });
+  }
+
+  async openNewTask() {
+    const modal = await this.modalCtrl.create({
+      component: NewTaskPage,
+      cssClass: 'newTaskModal',
+      initialBreakpoint: 0.5,
+      breakpoints: [0, 0.5, 1],
+    });
+    return await modal.present();
   }
 }

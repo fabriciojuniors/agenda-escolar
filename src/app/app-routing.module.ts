@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./screens/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'new-task',
+    loadChildren: () => import('./screens/new-task/new-task.module').then( m => m.NewTaskPageModule)
   }
 ];
 

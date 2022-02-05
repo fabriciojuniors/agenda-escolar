@@ -5,7 +5,7 @@
       <img src="../../../../assets/marker.png" style="height: 101px; width: 16px;" alt="">
     </ion-col>
     <ion-col size="11" class="info">
-      <p class="info-nome">{{compromisso.nome}} - {{compromisso.data}}</p>
+      <p class="info-nome">{{compromisso.nome}} - {{formataData(compromisso.data)}}</p>
       <p class="info-descricao">{{compromisso.descricao.substring(0, 120)}}</p>
     </ion-col>
   </ion-row>

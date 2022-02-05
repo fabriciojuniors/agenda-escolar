@@ -17,6 +17,11 @@ export class CompromissoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  formataData(data){
+    return moment(data).format("DD/MM/yyyy HH:mm")
+  }
 
 }
