@@ -17,6 +17,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar mode="ios" showCancelButton="focus" cancelButtonText="Cancelar" placeholder="Pesquisar compromisso" (ionChange)="pesquisar()"></ion-searchbar>
+  <div id="show-date">
+    <p>{{month}}, {{year}}</p>
+    <ion-row>
+      <ion-col *ngFor="let day of daysOfWeek">
+        <app-day [day]="day.day.toString()" [dayOfWeek]="day.dayOfWeek"></app-day>
+      </ion-col>
+    </ion-row>    
+  </div>
+
   <div id="container">
     <strong class="capitalize">HomeCon</strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
