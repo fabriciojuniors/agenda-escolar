@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "agenda-escolar-363c6": {
+      "hosting": {
+        "app": [
+          "agenda-escolar-363c6"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "agenda-escolar-363c6"
+  }
+}
