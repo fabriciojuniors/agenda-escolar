@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#conteudo {
+    margin-bottom: 8%;
+}
+.info {
+  width: 95%;
+  height: 74px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.info-date {
+  width: 95%;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.info-nome {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+  margin-left: 5%;
+}
+
+.info-descricao {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  color: #ffffff;
+  margin-left: 5%;
+}

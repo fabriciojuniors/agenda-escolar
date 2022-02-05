@@ -9,28 +9,54 @@ import * as moment from 'moment';
 export class HomePage implements OnInit {
   daysOfWeek = [];
   month: string = '';
-  monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-  daysOfWeekName = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+  monthNames = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ];
+  daysOfWeekName = [
+    'Domingo',
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado',
+  ];
   year: number = 0;
+
+  compromisso = {
+    id: 1,
+    data: moment().toDate().toLocaleDateString(),
+    nome: 'Compromisso de teste',
+    descricao: 'Este é o primeiro compromisso de teste'
+  };
   constructor() {
     let now = moment().toDate();
     let counter = 1;
     this.year = now.getFullYear();
-    this.month = this.monthNames[now.getMonth()];   
+    this.month = this.monthNames[now.getMonth()];
     this.daysOfWeek.push({
       day: now.getDate(),
-      dayOfWeek: this.daysOfWeekName[now.getDay()]
-    })
-    while(counter <= 4){
+      dayOfWeek: this.daysOfWeekName[now.getDay()],
+    });
+    while (counter <= 4) {
       let newDate = moment().add(counter, 'd').toDate();
       this.daysOfWeek.push({
         day: newDate.getDate(),
-        dayOfWeek: this.daysOfWeekName[newDate.getDay()]
-      })
-      counter++;      
+        dayOfWeek: this.daysOfWeekName[newDate.getDay()],
+      });
+      counter++;
     }
-    
   }
 
   ngOnInit() {}

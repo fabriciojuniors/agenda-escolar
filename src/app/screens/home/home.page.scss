@@ -36,3 +36,22 @@ ion-menu-button {
   margin-top: 20px;
   margin-bottom: 0px;
 }
+
+#compromissos{
+  position: fixed;
+  bottom: 0;
+  background-color: var(--ion-color-primary);
+  height: 65%;
+  width: 100%;
+  border-radius: 50px 50px 0px 0px;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+#conteudo{
+  margin-top: 2%;
+  color: #ffffff;
+  align-items: center;
+  width: 90%;
+}
