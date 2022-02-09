@@ -6,6 +6,10 @@
     <div id="form-login">
       <div class="form-login-content">
         <ion-item>
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input type="text" name="nome" [(ngModel)]="usuario.nome"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="floating">E-mail</ion-label>
           <ion-input type="email" name="email" [(ngModel)]="usuario.email"></ion-input>
         </ion-item>
@@ -13,16 +17,7 @@
           <ion-label position="floating">Senha</ion-label>
           <ion-input type="password" name="senha" [(ngModel)]="usuario.senha"></ion-input>
         </ion-item>
-        <ion-button expand="block" mode="ios" [disabled]="!this.usuario.email || (this.usuario.senha.length < 6)" (click)="entrar()">Entrar</ion-button>
-      </div>
-    </div>
-    <div id="account-info">
-      <div>
-        <p class="forgot-password">Esqueci minha senha</p>
-        <p class="forgot-password">
-          Ainda não tem uma conta? <br />
-          <span [routerLink]="['/register']" routerLinkActive="router-link-active" >Registre-se já!</span>
-        </p>
+        <ion-button expand="block" mode="ios" (click)="registrar()" [disabled]="!usuario.nome || !usuario.email || (usuario.senha.length < 6)" >Finalizar cadastro</ion-button>
       </div>
     </div>
   </div>

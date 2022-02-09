@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu persi contentId="main-content" menuId="menu" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
           <div style="display: flex">
@@ -8,8 +8,8 @@
               <img src="../assets/user-female.png" />
             </ion-avatar>
             <div>
-              <ion-list-header>Maria Luiza</ion-list-header>
-              <ion-note>marialuiza@gmail.com</ion-note>
+              <ion-list-header>{{displayName}}</ion-list-header>
+              <ion-note>{{email}}</ion-note>
             </div>
           </div>
 
@@ -32,10 +32,10 @@
       </ion-content>
       <ion-footer text-center>
         <ion-toolbar>
-          <ion-title>Sair</ion-title>
+          <ion-title [routerLink]="['/login']" routerLinkActive="router-link-active" >Sair</ion-title>
         </ion-toolbar>
       </ion-footer>
     </ion-menu>
-    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <ion-router-outlet main id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

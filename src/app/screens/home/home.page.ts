@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ModalController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import * as moment from 'moment';
+import { map } from 'rxjs/operators';
 import { NewTaskPage } from '../new-task/new-task.page';
 
 @Component({
@@ -42,7 +44,9 @@ export class HomePage implements OnInit {
   filtro = '';
   constructor(
     private modalCtrl: ModalController,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private menuCtrl: MenuController,
+    private auth : AngularFireAuth
   ) {
     let now = moment().toDate();
     let counter = 1;
@@ -60,20 +64,34 @@ export class HomePage implements OnInit {
       });
       counter++;
     }
+    this.menuCtrl.enable(true, "menu");
+    this.auth.authState.subscribe(state => {
+      this.usuario = state.uid;
+      console.log("ID:", state.uid);    
+      this.get();
+    })
   }
 
+  openMenu(){
+    this.menuCtrl.toggle("menu");
+  }
+
+
   async ngOnInit() {
+  }
+
+  get(){
     this.firestore
-      .collection('compromissos', (ref) =>
-        ref.where('usuario', '==', this.usuario)
-      )
-      .snapshotChanges()
-      .subscribe((data) => {
-        this.compromissos = [];
-        data.map((item) => {
-          this.compromissos.push(item.payload.doc.data());
-        });
+    .collection('compromissos', (ref) =>
+      ref.where('usuario', '==', this.usuario)
+    )
+    .snapshotChanges()
+    .subscribe((data) => {
+      this.compromissos = [];
+      data.map((item) => {
+        this.compromissos.push(item.payload.doc.data());
       });
+    });
   }
 
   pesquisar() {
