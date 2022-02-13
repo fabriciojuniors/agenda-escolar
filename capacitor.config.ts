@@ -2,9 +2,18 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.agendaescolar',
-  appName: 'agenda-escolar',
+  appName: 'Agenda',
   webDir: 'www',
-  bundledWebRuntime: false
+  bundledWebRuntime: false,
+  plugins: {
+		PushNotifications: {
+			presentationOptions: [
+				"badge",
+				"sound",
+				"alert"
+			]
+		}
+	}
 };
 
 export default config;

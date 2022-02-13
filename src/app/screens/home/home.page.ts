@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { MenuController, ModalController } from '@ionic/angular';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
+import { NotificationService } from 'src/app/services/notification.service';
 import { NewTaskPage } from '../new-task/new-task.page';
 
 @Component({
@@ -46,7 +47,8 @@ export class HomePage implements OnInit {
     private modalCtrl: ModalController,
     private firestore: AngularFirestore,
     private menuCtrl: MenuController,
-    private auth : AngularFireAuth
+    private auth : AngularFireAuth,
+    private notification : NotificationService
   ) {
     let now = moment().toDate();
     let counter = 1;
@@ -69,7 +71,9 @@ export class HomePage implements OnInit {
       this.usuario = state.uid;
       console.log("ID:", state.uid);    
       this.get();
-    })
+    });
+
+    this.notification.initPush();
   }
 
   openMenu(){
