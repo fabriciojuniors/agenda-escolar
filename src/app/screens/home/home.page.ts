@@ -122,7 +122,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: NewTaskPage,
       cssClass: 'newTaskModal',
-      initialBreakpoint: 0.5,
+      initialBreakpoint: 0.8,
       breakpoints: [0, 0.5, 1],
     });
     return await modal.present();

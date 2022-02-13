@@ -31,6 +31,12 @@ export class NotificationService {
     PushNotifications.addListener('registration',
       (token: Token) => {
         this.auth.authState.subscribe( state => {
+          this.db.collection("notification_token", (ref) => ref.where("user_id", "==", state.uid)).snapshotChanges()
+            .subscribe(data => {
+              data.map(item => {
+                this.db.collection("notification_token").doc(item.payload.doc.id).delete();
+              })
+            }).unsubscribe()
           this.db.collection("notification_token").add({user_id: state.uid, token: token});
         }) 
       }
